@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './contact.css';
-import StarRating from './StarRating';
+import StarRating from './Starrating.jsx';
 
 export default function App() {
   const WEB3FORMS_ACCESS_KEY = "0cdf0e6d-aa31-41ed-a3cf-466601460c92";  
