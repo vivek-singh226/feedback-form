@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './contact.css';
+import StarRating from './StarRating';
 
 export default function App() {
   const WEB3FORMS_ACCESS_KEY = "0cdf0e6d-aa31-41ed-a3cf-466601460c92";  
@@ -8,6 +9,7 @@ export default function App() {
     name: "",
     email: "",
     message: "",
+    rating: 0,
   });
 
   const submitForm = async (event) => {
@@ -24,6 +26,7 @@ export default function App() {
         name: formData.name,
         email: formData.email,
         message: formData.message,
+        rating: formData.rating,
       }),
     });
 
@@ -31,7 +34,7 @@ export default function App() {
     if (result.success) {
       console.log(result);
       // Buddy you can optionally clear the form or show a success message
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", message: "", rating:0 });
     } else {
       console.error("Submission failed:", result);
     }
@@ -42,6 +45,13 @@ export default function App() {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
+    }));
+  };
+
+  const handleRatingChange = (ratingValue) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      rating: ratingValue,
     }));
   };
 
@@ -84,8 +94,14 @@ export default function App() {
             required 
           ></textarea>
         </div>
+
+
+        <StarRating onRatingChange={handleRatingChange} />
+
+
+
         <div>
-          <button type="submit" className="bg-red-600 text-white px-4 py-2 rounded hover:bg-indigo-500">Send Message</button>
+          <button type="submit" className=" bg-red-600 text-white px-4 py-2 rounded hover:bg-indigo-500 ">Send Message</button>
         </div>
       </form>
     </section>
